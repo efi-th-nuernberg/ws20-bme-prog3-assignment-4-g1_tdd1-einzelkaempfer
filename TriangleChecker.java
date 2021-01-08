@@ -46,8 +46,24 @@ public class TriangleChecker {
   }
 
   // Analyse der Dreiecksart
-  public static TriangleType checkTriangle(float a, float b, float c) {
-    return TriangleType.NONE;
+  private static boolean checkRightLength(int a, int b, int c) {
+    return (a > 0 && b > 0 && c > 0 );
+  }
+
+  private static boolean cathetusLength (int a, int b, int c) {
+    return ((a+b)>c && (a+c)>b && (b+c)>a)
+  }
+
+   public static TriangleType checkTriangle(int a, int b, int c) {
+    if(checkRightLength(a, b, c) && cathetusLength(a, b ,c)){
+      if(a == b || b == c || c == a){
+        if(a == b && b == c)
+          return TriangleType.EQUILATERAL;
+      return TriangleType.ISOSCELES;
+      }        
+    return TriangleType.NORMAL;
+    }
+  return TriangleType.NONE;    
   }
 
 
